@@ -1,0 +1,29 @@
+[project]
+name = "transform"
+version = "2.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "sunwoo", email = "summerham22@gmail.com"},
+]
+dependencies = [
+    "Extrct @ git+https://github.com/play-gogo/Extract.git@d2/0.1.0",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+call_trans = 'transform.trans:ice_sunwoo'
+transform_data = 'transform.transform:transform'
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=8.3.2",
+    "pytest-cov>=5.0.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]

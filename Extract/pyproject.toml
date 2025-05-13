@@ -1,0 +1,21 @@
+[project]
+name = "Extrct"
+version = "0.2.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "hun0219", email = "gsw98000@gmail.com"},
+]
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "pandas>=2.2.2",
+    "requests>=2.32.3",
+]
+
+[project.scripts]
+#ice='extrct.ice:ice_hun'
+data = 'extrct.mov:list2df'
+
+[tool.pdm]
+distribution = true
