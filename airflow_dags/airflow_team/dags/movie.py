@@ -69,7 +69,7 @@ tags=['movie'],
         import os
         home_dir = os.path.expanduser("~")
         month=int(ds_nodash[4:6])
-        path = os.path.join(home_dir, f"code/playgogo/storage/month={month}/load_dt={ds_nodash}")
+        path = os.path.join(home_dir, f"/root/airflow_project/storage/month={month}/load_dt={ds_nodash}")
         print('*' * 30)
         print(path)
         print('*' * 30)   
@@ -87,7 +87,7 @@ tags=['movie'],
     extract = PythonVirtualenvOperator(
             task_id='extract',
             python_callable=fun_ext,
-            requirements=["git+https://github.com/play-gogo/Extract.git@d2/0.1.0"],
+            requirements=["git+https://github.com/hun0219/airflow_project.git@main#subdirectory=Extract"],
             system_site_packages=False,
             op_args=["{{ds_nodash}}"]
     )
@@ -96,7 +96,7 @@ tags=['movie'],
     transform = PythonVirtualenvOperator(
             task_id='transform',
             python_callable=fun_trans,
-            requirements=['git+https://github.com/play-gogo/transform.git@d2.0.0/test'],
+            requirements=["git+https://github.com/hun0219/airflow_project.git@main#subdirectory=transform"],
             system_site_packages=False,
             op_args=["{{ds_nodash}}"]
     )
@@ -105,7 +105,7 @@ tags=['movie'],
             task_id='load',
             python_callable=fun_load,
             trigger_rule="all_done",
-            requirements=["git+https://github.com/play-gogo/load.git@d2/0.1.0"],
+            requirements=["git+https://github.com/hun0219/airflow_project.git@main#subdirectory=Load"],
             system_site_packages=False,
             op_args=["{{ds_nodash}}"]
     )
@@ -119,8 +119,8 @@ tags=['movie'],
             bash_command="""
                 month=$(echo "{{ ds_nodash[4:6] }}" | awk '{print $1+0}');
                 echo $month
-                echo code/playgogo/storage/month=$month/load_dt={{ds_nodash}}
-                rm -rf ~/code/playgogo/storage/month=$month/load_dt={{ds_nodash}}
+                echo /root/airflow_project/storage/month=$month/load_dt={{ds_nodash}}
+                rm -rf /root/airflow_project/storage/month=$month/load_dt={{ds_nodash}}
             """
 
     )

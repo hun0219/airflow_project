@@ -3,7 +3,7 @@ name = "transform"
 version = "2.1.0"
 description = "Default template for PDM package"
 authors = [
-    {name = "sunwoo", email = "summerham22@gmail.com"},
+    {name = "hun0219", email = "gsw98000@gmail.com"},
 ]
 dependencies = [
     "Extrct @ git+https://github.com/play-gogo/Extract.git@d2/0.1.0",
