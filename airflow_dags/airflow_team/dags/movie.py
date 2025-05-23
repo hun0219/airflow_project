@@ -122,7 +122,6 @@ tags=['movie'],
                 echo /root/airflow_project/storage/month=$month/load_dt={{ds_nodash}}
                 rm -rf /root/airflow_project/storage/month=$month/load_dt={{ds_nodash}}
             """
-
     )
 
     start >> extract >> transform 
